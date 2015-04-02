@@ -58,7 +58,6 @@ var App = React.createClass({
     },
     render: function () {
         query = this.context.router.getCurrentQuery();
-        console.log('rendering app', query);
 
         var spacedoutstyle = {};
         return (
@@ -68,6 +67,7 @@ var App = React.createClass({
 });
 
 
+console.log('rendering app', query);
 
 var Router = ReactRouter;
 var DefaultRoute = Router.DefaultRoute;
