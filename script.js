@@ -76,7 +76,7 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 var routes = (
-  <Route handler={App} path="/spacedout/">
+  <Route handler={App} path="*">
   </Route>
 );
 
