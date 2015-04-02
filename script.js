@@ -11,9 +11,9 @@ var Spacedout = React.createClass({
     render: function() {
         var spacedout = this;
         var val = this.props.val;
-
+        var colz = spacedout.props.cols;
         grid = _.groupBy(val.split(''), function(l, i) {
-            return Math.floor(i / spacedout.props.cols);
+            return Math.floor(i / colz);
         });
 
 
@@ -21,8 +21,8 @@ var Spacedout = React.createClass({
                 _.map(
                     _.map(grid, function(x) {
                         return _.map(x, function(y) {
-                            var h = spacedout.props.height / Math.ceil(val.length / spacedout.props.cols);
-                            return <span className="col" style={{'font-size': h * 0.5, width: spacedout.props.width / spacedout.props.cols, height: h}}>{y}</span>;
+                            var h = spacedout.props.height / Math.ceil(val.length / colz);
+                            return <span className="col" style={{'font-size': h * 0.5, width: spacedout.props.width / colz, height: h}}>{y}</span>;
                         });
 
                     }), function(z) {
@@ -36,7 +36,7 @@ var Spacedout = React.createClass({
                 <textarea value={this.props.val} onChange={this.nav('val')}></textarea>
                 <input value={this.props.height} onChange={this.nav('height')} />
                 <input value={this.props.width} onChange={this.nav('width')} />
-                <input value={this.props.cols} onChange={this.nav('cols')} />
+                <input value={this.props.cols || ''} onChange={this.nav('cols')} />
                 </div>
                 <div>
                 <pre className="spacedout" style={this.props}>{grid}</pre>
@@ -60,7 +60,7 @@ var App = React.createClass({
 
         var spacedoutstyle = {};
         return (
-                <Spacedout cols={parseInt(query.cols) || 3} val={query.val} style={spacedoutstyle} nav={this.nav} width={query.width || 200} height={query.height || 200} border="6px solid white" padding={query.padding || 30} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color || "white"} />
+                <Spacedout cols={query.cols} val={query.val} style={spacedoutstyle} nav={this.nav} width={query.width} height={query.height} border="6px solid white" padding={query.padding || 30} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color || "white"} />
         );
   }
 });
