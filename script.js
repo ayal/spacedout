@@ -11,7 +11,7 @@ var Spacedout = React.createClass({
     render: function() {
         var spacedout = this;
         var val = this.props.val || '';
-        var colz = spacedout.props.cols;
+        var colz = spacedout.props.cols || 1;
         grid = _.groupBy(val.split(''), function(l, i) {
             return Math.floor(i / colz);
         });
