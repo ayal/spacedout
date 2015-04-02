@@ -1,33 +1,19 @@
 var Spacedout = React.createClass({
-    getInitialState:function() {
-        return {val:this.props.val, style:this.props.style, cols:this.props.cols};
-    },
-    valChanged: function() {
-        var val = event.target.value;
-        this.setState({val: val});
-    },
-    changeHeight: function() {
-        var val = event.target.value;
-        var style = _.clone(this.state.style);
-        style.height = val;
-        this.setState({style: style});
-    },
-    changeWidth: function() {
-        var val = event.target.value;
-        var style = _.clone(this.state.style);
-        style.width = val;
-        this.setState({style: style});
-    },
-    changeCols: function() {
-        var val = event.target.value;
-        this.setState({cols: val});
+    nav: function(name) {
+        var that = this;
+        return function(e) {
+            var val = event.target.value;
+            var q = {};
+            q[name] = val;
+            that.props.nav(q);
+        };
     },
     render: function() {
         var spacedout = this;
-        var val = this.state.val;
+        var val = this.props.val;
 
         grid = _.groupBy(val.split(''), function(l, i) {
-            return Math.floor(i / spacedout.state.cols);
+            return Math.floor(i / spacedout.props.cols);
         });
 
 
@@ -35,8 +21,8 @@ var Spacedout = React.createClass({
                 _.map(
                     _.map(grid, function(x) {
                         return _.map(x, function(y) {
-                            var h = spacedout.state.style.height / Math.ceil(val.length / spacedout.state.cols);
-                            return <span className="col" style={{'font-size': h * 0.5, width: spacedout.state.style.width / spacedout.state.cols, height: h}}>{y}</span>;
+                            var h = spacedout.props.height / Math.ceil(val.length / spacedout.props.cols);
+                            return <span className="col" style={{'font-size': h * 0.5, width: spacedout.props.width / spacedout.props.cols, height: h}}>{y}</span>;
                         });
 
                     }), function(z) {
@@ -45,28 +31,55 @@ var Spacedout = React.createClass({
 
 
         return (
-<div>
+                <div>
                 <div className="editor">
-                <textarea value={this.state.val} onChange={this.valChanged}></textarea>
-                <input value={this.state.style.height} onChange={this.changeHeight} />
-                <input value={this.state.style.width} onChange={this.changeWidth} />
-                <input value={this.state.cols} onChange={this.changeCols} />
+                <textarea value={this.props.val} onChange={this.nav('val')}></textarea>
+                <input value={this.props.height} onChange={this.nav('height')} />
+                <input value={this.props.width} onChange={this.nav('width')} />
+                <input value={this.props.cols} onChange={this.nav('cols')} />
                 </div>
-<div>
-                <pre className="spacedout" style={this.state.style}>
-                {grid}
-            </pre>
-
+                <div>
+                <pre className="spacedout" style={this.props}>{grid}</pre>
                 </div>
-
                 </div>
         );
     }
 });
 
 
-var spacedoutstyle = {width:200,height:200,border:'6px solid white', padding:30, 'font-family': "futura-pt",'font-weight':500,color:'white'};
-React.render(
-  <Spacedout cols={3} val="spacedout" style={spacedoutstyle} />,
-  document.getElementById('container')
+var App = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func
+    },
+    nav: function(q) {
+        var cquery = this.context.router.getCurrentQuery();
+        this.context.router.transitionTo('/', '', _.extend(cquery,q));
+        this.forceUpdate();
+    },
+    render: function () {
+        query = this.context.router.getCurrentQuery();
+
+        var spacedoutstyle = {};
+        return (
+                <Spacedout cols={parseInt(query.cols) || 3} val={query.val || "spacedout"} style={spacedoutstyle} nav={this.nav} width={query.width || 200} height={query.height || 200} border="6px solid white" padding={query.padding || 30} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color || "white"} />
+        );
+  }
+});
+
+
+
+
+var Router = ReactRouter;
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+
+var routes = (
+  <Route handler={App} path="/">
+  </Route>
 );
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  React.render(<Handler/>, document.body);
+});
