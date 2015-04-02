@@ -60,7 +60,7 @@ var App = React.createClass({
 
         var spacedoutstyle = {};
         return (
-                <Spacedout cols={parseInt(query.cols) || 3} val={query.val || "spacedout"} style={spacedoutstyle} nav={this.nav} width={query.width || 200} height={query.height || 200} border="6px solid white" padding={query.padding || 30} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color || "white"} />
+                <Spacedout cols={parseInt(query.cols) || 3} val={query.val} style={spacedoutstyle} nav={this.nav} width={query.width || 200} height={query.height || 200} border="6px solid white" padding={query.padding || 30} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color || "white"} />
         );
   }
 });
