@@ -53,7 +53,7 @@ var App = React.createClass({
     },
     nav: function(q) {
         var cquery = this.context.router.getCurrentQuery();
-        this.context.router.transitionTo('/', '', _.extend(cquery,q));
+        this.context.router.transitionTo('/spacedout', '', _.extend(cquery,q));
         this.forceUpdate();
     },
     render: function () {
