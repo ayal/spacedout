@@ -1,0 +1,56 @@
+html,body {
+    height:100%;
+    'font-family': "futura-pt"
+}
+body {
+    background: linear-gradient(to bottom, #577AA4, #A77CA7 );
+    text-align:center;
+}
+
+.spacedout {
+    display:inline-block;
+}
+
+.col {
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    margin:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float:left;
+}
+
+
+.editor {
+    position:fixed;
+    bottom:0;
+    left:0;
+}
+input,textarea {
+    display:block;
+    background:transparent;
+    border:none;
+    font-size:16px;
+    height:50px;
+    width:200px;
+    color:white;
+    text-align:center;
+    border-bottom:1px solid white;
+}
+
+.row {
+    margin:0;
+}
+
+.cover {
+    width:851px;
+    height:315px;
+
+    text-align:center;
+    /*background-image:url('http://i.imgur.com/rFoJ0tF.png');*/
+    /*background-image:url('https://wintersong.files.wordpress.com/2012/04/couple-on-ancient-bicycle.jpg');*/
+    /*background-image:url('http://41.media.tumblr.com/tumblr_lvqnw7fqgo1qbycdbo1_1280.jpg');*/
+    background: linear-gradient(to bottom, #577AA4, #A77CA7 );
+}
