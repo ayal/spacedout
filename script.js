@@ -67,7 +67,7 @@ var App = React.createClass({
 });
 
 
-console.log('rendering app', query);
+console.log('rendering app');
 
 var Router = ReactRouter;
 var DefaultRoute = Router.DefaultRoute;
@@ -76,7 +76,7 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 var routes = (
-  <Route handler={App} path="/">
+  <Route handler={App} path="/spacedout">
   </Route>
 );
 
