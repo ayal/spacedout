@@ -27,7 +27,7 @@ html,body,.wrap {
 
 
 input,textarea {
-    display:block;
+    display:inline-block;
     background:transparent;
     border:none;
     font-size:16px;
@@ -36,6 +36,13 @@ input,textarea {
     color:white;
     text-align:center;
     border-bottom:1px solid white;
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 .row {
@@ -61,7 +68,7 @@ input,textarea {
 }
 
 .editor {
-    padding:10px;
+    text-align:center;
 }
 
 /* menu start */
