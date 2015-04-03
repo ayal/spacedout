@@ -129,7 +129,7 @@ var App = React.createClass({
         return (
             <div className="wrap st-container" id="st-container" style={{background:"linear-gradient(to bottom, " + query.g1 + "," + query.g2 + ")"}}>
 
-                <nav className="st-menu st-effect-11" id="menu-2">
+                <nav className="st-menu st-effect-11" id="menu-2" style={{background:query.g1}}>
 		 <h2 className="icon icon-stack">:)</h2>
 		 <ul>
 
@@ -150,7 +150,7 @@ var App = React.createClass({
 
                 <div className="st-pusher">
                 <div id="st-trigger-effects">
-                <button id="menubutton" data-effect="st-effect-11">EDIT</button>
+                <button id="menubutton" data-effect="st-effect-11" style={{background:query.g2}}>EDIT</button>
                 </div>
                 <Spacedout cols={query.cols} val={query.val} nav={this.nav} width={query.width} height={query.height} border={query.border + "px solid " + query.color} padding={query.padding} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color} g1={query.g1} g2={query.g2} sobackground={"linear-gradient(to bottom, " + query.g1 + ", " + query.g2 + ");"} />
                 </div>
