@@ -48,6 +48,13 @@ input,textarea {
     left:20px;
 }
 
+#sharebutton {
+    position:fixed;
+    top:20px;
+    left:100px;
+}
+
+
 .editor {
     padding:10px;
 }

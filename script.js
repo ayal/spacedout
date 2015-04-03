@@ -28,6 +28,7 @@
 	window.initMenu = (function() {
 		var container = document.getElementById( 'st-container' ),
 			buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects > button' ) ),
+
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
@@ -96,6 +97,9 @@ var Spacedout = React.createClass({
 
 
 var App = React.createClass({
+    getInitialState: function() {
+        return {menustate: ''};
+    },
     contextTypes: {
         router: React.PropTypes.func
     },
@@ -120,14 +124,25 @@ var App = React.createClass({
         this.context.router.transitionTo('/spacedout', '', _.extend(cquery,q));
     },
     componentDidMount: function() {
-        window.initMenu();
+
+    },
+    nomenu: function() {
+        this.setState({menustate:''});
+    },
+    share: function() {
+        window.open(location.href, 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+    },
+    edit: function(ev) {
+        ev.stopPropagation();
+	ev.preventDefault();
+        this.setState({menustate: 'st-menu-open'});
     },
     render: function () {
         //    background: linear-gradient(to bottom,  );
         query = this.context.router.getCurrentQuery();
 
         return (
-            <div className="wrap st-container" id="st-container" style={{background:"linear-gradient(to bottom, " + query.g1 + "," + query.g2 + ")"}}>
+            <div className={"wrap st-container st-effect-11 " + this.state.menustate} id="st-container" style={{background:"linear-gradient(to bottom, " + query.g1 + "," + query.g2 + ")"}}>
 
                 <nav className="st-menu st-effect-11" id="menu-2" style={{background:query.g1}}>
 		 <h2 className="icon icon-stack">:)</h2>
@@ -143,15 +158,19 @@ var App = React.createClass({
                 <input type="color" value={query.color} onChange={this.nav('color')} />
                 <input type="color" value={query.g1} onChange={this.nav('g1')} />
                 <input type="color" value={query.g2} onChange={this.nav('g2')} />
+
                 </div>
 
 		 </ul>
 		</nav>
 
-                <div className="st-pusher">
+                <div className="st-pusher" onClick={this.nomenu} >
                 <div id="st-trigger-effects">
-                <button id="menubutton" data-effect="st-effect-11" style={{background:query.g2}}>EDIT</button>
+                <button id="menubutton" style={{background:query.g2}} onClick={this.edit}>EDIT</button>
                 </div>
+                <button id="sharebutton" style={{background:query.g2}} onClick={this.share}>SHARE</button>
+
+
                 <Spacedout cols={query.cols} val={query.val} nav={this.nav} width={query.width} height={query.height} border={query.border + "px solid " + query.color} padding={query.padding} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color} g1={query.g1} g2={query.g2} sobackground={"linear-gradient(to bottom, " + query.g1 + ", " + query.g2 + ");"} />
                 </div>
                 </div>
