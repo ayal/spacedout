@@ -54,6 +54,11 @@ input,textarea {
     left:100px;
 }
 
+.credit {
+    position:fixed;
+    bottom:20px;
+    left:20px;
+}
 
 .editor {
     padding:10px;

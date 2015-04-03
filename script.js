@@ -105,7 +105,7 @@ var App = React.createClass({
     },
     componentWillMount: function() {
         var cquery = this.context.router.getCurrentQuery();
-        var def = {val: 'SPACED OUT~', width:300, height:300, cols:3, color:'#ffcc00', g1: "#28384d", g2: '#8e4a9f', padding:10, border:4};
+        var def = {val: 'SPACED OUT~', width:300, height:300, cols:3, color:'#ffffff', g1: "#28384d", g2: '#8e4a9f', padding:10, border:4};
 
         this.context.router.transitionTo('/spacedout', '', _.extend(def,cquery));
     },
@@ -145,7 +145,7 @@ var App = React.createClass({
             <div className={"wrap st-container st-effect-11 " + this.state.menustate} id="st-container" style={{background:"linear-gradient(to bottom, " + query.g1 + "," + query.g2 + ")"}}>
 
                 <nav className="st-menu st-effect-11" id="menu-2" style={{background:query.g1}}>
-		 <h2 className="icon icon-stack">:)</h2>
+		 <h2 className="icon icon-stack" style={{color:'white'}}>~</h2>
 		 <ul>
 
                 <div className="editor">
@@ -158,7 +158,6 @@ var App = React.createClass({
                 <input type="color" value={query.color} onChange={this.nav('color')} />
                 <input type="color" value={query.g1} onChange={this.nav('g1')} />
                 <input type="color" value={query.g2} onChange={this.nav('g2')} />
-
                 </div>
 
 		 </ul>
@@ -169,6 +168,7 @@ var App = React.createClass({
                 <button id="menubutton" style={{background:query.g2}} onClick={this.edit}>EDIT</button>
                 </div>
                 <button id="sharebutton" style={{background:query.g2}} onClick={this.share}>SHARE</button>
+                <a href="/spacedout?val=AYAL%20GELLES©&width=344&height=354&cols=4&color=%23ffffff&g1=%23f185ad&g2=%2344a0a6&padding=28&border=8" target="_blank" className="credit" style={{color:query.color,fontSize:'13px'}}>Who made this?</a>
 
 
                 <Spacedout cols={query.cols} val={query.val} nav={this.nav} width={query.width} height={query.height} border={query.border + "px solid " + query.color} padding={query.padding} fontFamily="futura-pt" fontWeight={query.fontweight || 500} color={query.color} g1={query.g1} g2={query.g2} sobackground={"linear-gradient(to bottom, " + query.g1 + ", " + query.g2 + ");"} />
