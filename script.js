@@ -130,7 +130,7 @@ var App = React.createClass({
         this.setState({menustate:''});
     },
     share: function() {
-        window.open(location.href, 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
     },
     edit: function(ev) {
         ev.stopPropagation();
