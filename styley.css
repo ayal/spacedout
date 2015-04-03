@@ -44,8 +44,8 @@ input,textarea {
 
 #menubutton {
     position:fixed;
-    top:10px;
-    left:10px;
+    top:20px;
+    left:20px;
 }
 
 .editor {
