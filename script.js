@@ -141,29 +141,52 @@ var App = React.createClass({
         //    background: linear-gradient(to bottom,  );
         query = this.context.router.getCurrentQuery();
 
+
+        var bgstyle = {background:'url("' + query.bgurl + '")', '-webkit-filter': query.filter,
+                       'background-position-x': query.bgx, 'background-position-y': query.bgy,
+                      opacity:query.opacity, transform: query.transform,
+                      'background-size': query.bgsize + 'px'} ;
+
+        makeinput = function(name,type,min,max,step) {
+            return (<div>
+                    <label>{name}</label>
+                    <span>
+                    <input type={type} min={min} max={max} step={step || 1} value={query[name]} onChange={this.nav(name)} />
+                    </span>
+                    </div>);
+        }.bind(this);
+
         return (
             <div className={"wrap st-container st-effect-11 " + this.state.menustate} id="st-container" style={{background:"linear-gradient(to bottom, " + query.g1 + "," + query.g2 + ")"}}>
 
                 <nav className="st-menu st-effect-11" id="menu-2" style={{background:query.g1}}>
-		 <h2 className="icon icon-stack" style={{color:'white'}}>~</h2>
 		 <ul>
-
                 <div className="editor">
                 <textarea value={query.val} onChange={this.nav('val')}></textarea>
-                <input type="range" min="50" max="1000"  value={query.height} onChange={this.nav('height')} />
-                <input type="range" min="50" max="1000" value={query.width} onChange={this.nav('width')} />
-                <input type="range" min="1" max="10" value={query.cols} onChange={this.nav('cols')} />
-                <input type="range" min="10" max="100" value={query.padding} onChange={this.nav('padding')} />
-                <input type="range" min="0" max="15" value={query.border} onChange={this.nav('border')} />
-                <input type="color" value={query.color} onChange={this.nav('color')} />
-                <input type="color" value={query.g1} onChange={this.nav('g1')} />
-                <input type="color" value={query.g2} onChange={this.nav('g2')} />
+                {makeinput('height','range',50,1000)}
+                {makeinput('width','range',50,1000)}
+                {makeinput('cols','range',1,10)}
+                {makeinput('padding','range',10,100)}
+                {makeinput('border','range',0,15)}
+            {makeinput('color','color')}
+            {makeinput('g1','color')}
+            {makeinput('g2','color')}
+
+            {makeinput('bgurl')}
+            {makeinput('filter')}
+            {makeinput('bgsize','range',100,1000)}
+            {makeinput('transform')}
+
+                {makeinput('bgx','range',-500,500)}
+                {makeinput('bgy','range',-500,500)}
+                {makeinput('opacity','range',0,1,0.1)}
                 </div>
 
 		 </ul>
 		</nav>
 
                 <div className="st-pusher" onClick={this.nomenu} >
+                <div className="bgimage" style={bgstyle}></div>
                 <div id="st-trigger-effects">
                 <button id="menubutton" style={{background:query.g2}} onClick={this.edit}>EDIT</button>
                 </div>
