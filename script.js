@@ -149,7 +149,7 @@ var App = React.createClass({
 
         makeinput = function(name,type,min,max,step) {
             return (<div>
-                    <label>{name}</label>
+                    <label style={{color:query.color}}>{name}</label>
                     <span>
                     <input type={type} min={min} max={max} step={step || 1} value={query[name]} onChange={this.nav(name)} />
                     </span>
