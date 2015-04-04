@@ -37,14 +37,20 @@ input,textarea {
     width:200px;
     color:white;
     text-align:center;
-    border-bottom:1px solid white;
-    border: none;
     overflow: auto;
     outline: none;
 
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    border-bottom:1px dotted white;
+    margin-left:50px;
+
+
+}
+
+input[type=color],input[type=range] {
+    border:none;
 }
 
 input {

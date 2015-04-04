@@ -148,8 +148,8 @@ var App = React.createClass({
                       'background-size': query.bgsize + 'px'} ;
 
         makeinput = function(name,type,min,max,step) {
-            return (<div>
-                    <label style={{color:query.color}}>{name}</label>
+            return (<div style={{position:'relative'}}>
+                    <label style={{color:query.color,transform:'translateY(-50%)',position:'absolute',top:'50%'}}>{name}</label>
                     <span>
                     <input type={type} min={min} max={max} step={step || 1} value={query[name]} onChange={this.nav(name)} />
                     </span>
@@ -162,7 +162,7 @@ var App = React.createClass({
                 <nav className="st-menu st-effect-11" id="menu-2" style={{background:query.g1}}>
 		 <ul>
                 <div className="editor">
-                <textarea value={query.val} onChange={this.nav('val')}></textarea>
+                <div style={{position:'relative'}}><label style={{color:query.color,transform:'translateY(-50%)',position:'absolute',top:'50%'}} >Text</label><textarea value={query.val} onChange={this.nav('val')}></textarea></div>
                 {makeinput('height','range',50,1000)}
                 {makeinput('width','range',50,1000)}
                 {makeinput('cols','range',1,10)}
