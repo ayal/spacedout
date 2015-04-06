@@ -1,6 +1,6 @@
 html,body,.wrap {
     height:100%;
-    'font-family': "futura-pt"
+    font-family: 'Lato', Calibri, Arial, sans-serif;
     padding:0;
     margin:0;
 }
@@ -10,6 +10,7 @@ html,body,.wrap {
 }
 
 .spacedout {
+    font-family: "futura-pt";
     display:inline-block;
     margin-top:100px;
     position:relative;
@@ -680,8 +681,6 @@ input {
 body {
 	background: #444;
 	color: #48a770;
-	font-weight: 300;
-	font-family: 'Lato', Calibri, Arial, sans-serif;
 }
 
 a, button {
